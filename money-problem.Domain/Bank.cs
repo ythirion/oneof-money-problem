@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using OneOf;
 
 namespace money_problem.Domain
 {
@@ -18,7 +17,7 @@ namespace money_problem.Domain
 
         private static string KeyFor(Currency from, Currency to) => $"{from}->{to}";
 
-        public OneOf<Money, MissingExchangeRate> Convert(Money money, Currency toCurrency) =>
+        public ConversionResult Convert(Money money, Currency toCurrency) =>
             CanConvert(money.Currency, toCurrency)
                 ? ConvertSafely(money, toCurrency)
                 : new MissingExchangeRate(money.Currency, toCurrency);

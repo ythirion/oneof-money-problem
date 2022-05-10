@@ -48,9 +48,9 @@ namespace money_problem.Tests
                 .AddToPortfolio(1d.Euros())
                 .AddToPortfolio(1d.KoreanWons());
 
-            var missingExchangeRates = portfolio.Evaluate(_bank, KRW).AsT1;
-
-            missingExchangeRates.Should()
+            portfolio.Evaluate(_bank, KRW)
+                .MissingExchangeRates
+                .Should()
                 .HaveCount(1)
                 .And
                 .Contain(new MissingExchangeRate(EUR, KRW));

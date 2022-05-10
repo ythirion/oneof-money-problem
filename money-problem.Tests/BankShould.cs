@@ -13,7 +13,7 @@ namespace money_problem.Tests
         public void ConvertEuroToUsd()
         {
             _bank.Convert(10d.Euros(), USD)
-                .AsT0
+                .Money
                 .Should()
                 .Be(12d.Dollars());
         }
@@ -22,7 +22,7 @@ namespace money_problem.Tests
         public void ConvertMoneyInTheSameCurrency()
         {
             _bank.Convert(10d.Euros(), EUR)
-                .AsT0
+                .Money
                 .Should()
                 .Be(10d.Euros());
         }
@@ -31,7 +31,7 @@ namespace money_problem.Tests
         public void ConvertWithMissingExchangeRateShouldReturnMissingExchangeRate()
         {
             _bank.Convert(10d.Euros(), KRW)
-                .AsT1
+                .MissingExchangeRate
                 .Should()
                 .Be(new MissingExchangeRate(EUR, KRW));
         }
@@ -40,13 +40,13 @@ namespace money_problem.Tests
         public void ConvertWithDifferentExchangeRates()
         {
             _bank.Convert(10d.Euros(), USD)
-                .AsT0
+                .Money
                 .Should()
                 .Be(12d.Dollars());
 
             _bank.AddExchangeRate(EUR, USD, 1.3)
                 .Convert(10d.Euros(), USD)
-                .AsT0
+                .Money
                 .Should()
                 .Be(13d.Dollars());
         }
