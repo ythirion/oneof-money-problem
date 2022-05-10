@@ -1,5 +1,5 @@
 # Oneof money problem
-A small kata to experiment discriminated unions for C#, using a custom type OneOf<T0, ... Tn>.
+A small kata to experiment discriminated unions for C#, using a custom type `OneOf<T0, ... Tn>`.
 An instance of this type holds a single value, which is one of the types in its generic argument list.
 
 Due to exhaustive matching DUs provide an alternative to polymorphism when you want to have a method with guaranteed behaviour-per-type (i.e. adding an abstract method on a base type, and then implementing that method in each type). 
