@@ -39,13 +39,13 @@ namespace money_problem.Tests
                 .Be(2200d.KoreanWons());
         }
 
-        [Fact(DisplayName = "Return a Left in case of missing exchange rates")]
-        public void AddWithMissingExchangeRatesShouldReturnALeft()
+        [Fact(DisplayName = "Throws a MissingExchangeRatesException case of missing exchange rates")]
+        public void AddWithMissingExchangeRatesShouldThrowAMissingExchangeRatesException()
         {
             var portfolio = 1d.Dollars()
                 .AddToPortfolio(1d.Euros())
                 .AddToPortfolio(1d.KoreanWons());
-            
+
             Action evaluate = () => portfolio.Evaluate(_bank, KRW);
 
             evaluate.Should()
