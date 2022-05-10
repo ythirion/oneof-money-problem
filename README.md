@@ -13,3 +13,7 @@ more about [OneOf](https://github.com/mcintyre321/OneOf)
 
 ## Reflect
 - What has been the impact on the code? (production and consumer code)
+
+## Step by step guide
+The steps I have followed are available in the git history of this branch
+![Step by step in git](step-by-step.png)
