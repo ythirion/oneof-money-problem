@@ -15,4 +15,4 @@ more about [OneOf](https://github.com/mcintyre321/OneOf)
 - What has been the impact on the code? (production and consumer code)
 
 ## "Solution"
-A "solution" using `OneOf` library is availabl in the branch `OneOf`
+A "solution" using `OneOf` library is available in the branch `OneOf`
