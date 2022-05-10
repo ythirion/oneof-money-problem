@@ -6,19 +6,16 @@ namespace money_problem.Domain
             Bank bank,
             Currency toCurrency)
         {
-            var missingExchangeRates = new List<MissingExchangeRateException>();
+            var missingExchangeRates = new List<MissingExchangeRate>();
             var convertedMoneys = new List<Money>();
 
             foreach (var money in Moneys)
             {
-                try
-                {
-                    convertedMoneys.Add(bank.Convert(money, toCurrency));
-                }
-                catch (MissingExchangeRateException e)
-                {
-                    missingExchangeRates.Add(e);
-                }
+                bank.Convert(money, toCurrency)
+                    .Switch(
+                        converted => convertedMoneys.Add(converted),
+                        missingExchangeRate => missingExchangeRates.Add(missingExchangeRate)
+                    );
             }
 
             return !missingExchangeRates.Any()

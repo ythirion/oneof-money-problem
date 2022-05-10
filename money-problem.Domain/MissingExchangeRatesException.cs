@@ -9,9 +9,9 @@ namespace money_problem.Domain
         {
         }
 
-        public MissingExchangeRatesException(IEnumerable<MissingExchangeRateException> missingExchangeRateExceptions)
+        public MissingExchangeRatesException(List<MissingExchangeRate> missingExchangeRateExceptions)
             : base(
-                $"Missing exchange rate(s): [{string.Join(",", missingExchangeRateExceptions.Select(_ => _.Message))}]")
+                $"Missing exchange rate(s): [{string.Join(",", missingExchangeRateExceptions.Select(_ => $"{_.From}->{_.To}"))}]")
         {
         }
     }
