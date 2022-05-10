@@ -1,8 +1,10 @@
+using OneOf;
+
 namespace money_problem.Domain
 {
     public record Portfolio(params Money[] Moneys)
     {
-        public Money Evaluate(
+        public OneOf<Money, MissingExchangeRate[]> Evaluate(
             Bank bank,
             Currency toCurrency)
         {
@@ -20,7 +22,7 @@ namespace money_problem.Domain
 
             return !missingExchangeRates.Any()
                 ? new Money(convertedMoneys.Aggregate(0d, (acc, money) => acc + money.Amount), toCurrency)
-                : throw new MissingExchangeRatesException(missingExchangeRates);
+                : missingExchangeRates.ToArray();
         }
     }
 }

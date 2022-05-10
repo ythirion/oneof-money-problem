@@ -28,7 +28,7 @@ namespace money_problem.Tests
         }
 
         [Fact(DisplayName = "Return A missing Exchange Rate in case of missing exchange rates")]
-        public void ConvertWithMissingExchangeRateShouldThrowException()
+        public void ConvertWithMissingExchangeRateShouldReturnMissingExchangeRate()
         {
             _bank.Convert(10d.Euros(), KRW)
                 .AsT1
