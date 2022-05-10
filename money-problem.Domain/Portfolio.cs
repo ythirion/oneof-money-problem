@@ -4,7 +4,7 @@ namespace money_problem.Domain
 {
     public record Portfolio(params Money[] Moneys)
     {
-        public OneOf<Money, MissingExchangeRate[]> Evaluate(
+        public EvaluationResult Evaluate(
             Bank bank,
             Currency toCurrency)
         {

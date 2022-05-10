@@ -16,7 +16,7 @@ namespace money_problem.Tests
         {
             var portfolio = 5d.Dollars().AddToPortfolio(10d.Dollars());
             portfolio.Evaluate(_bank, USD)
-                .AsT0
+                .Money
                 .Should()
                 .Be(15d.Dollars());
         }
@@ -26,7 +26,7 @@ namespace money_problem.Tests
         {
             var portfolio = 5d.Dollars().AddToPortfolio(10d.Euros());
             portfolio.Evaluate(_bank, USD)
-                .AsT0
+                .Money
                 .Should()
                 .Be(17d.Dollars());
         }
@@ -36,7 +36,7 @@ namespace money_problem.Tests
         {
             var portfolio = 1d.Dollars().AddToPortfolio(1100d.KoreanWons());
             portfolio.Evaluate(_bank, KRW)
-                .AsT0
+                .Money
                 .Should()
                 .Be(2200d.KoreanWons());
         }
