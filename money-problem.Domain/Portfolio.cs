@@ -8,21 +8,16 @@ namespace money_problem.Domain
             Bank bank,
             Currency toCurrency)
         {
-            var missingExchangeRates = new List<MissingExchangeRate>();
-            var convertedMoneys = new List<Money>();
+            var convertedMoneys =
+                Moneys
+                    .Select(money => bank.Convert(money, toCurrency))
+                    .ToList();
 
-            foreach (var money in Moneys)
-            {
-                bank.Convert(money, toCurrency)
-                    .Switch(
-                        converted => convertedMoneys.Add(converted),
-                        missingExchangeRate => missingExchangeRates.Add(missingExchangeRate)
-                    );
-            }
-
-            return !missingExchangeRates.Any()
-                ? new Money(convertedMoneys.Aggregate(0d, (acc, money) => acc + money.Amount), toCurrency)
-                : missingExchangeRates.ToArray();
+            return !convertedMoneys.Exists(_ => _.IsT1)
+                ? new Money(convertedMoneys.Aggregate(0d, (acc, money) => acc + money.Match(
+                    success => success.Amount,
+                    _ => 0)), toCurrency)
+                : convertedMoneys.Where(_ => _.IsT1).Select(_ => _.AsT1).ToArray();
         }
     }
 }
