@@ -17,3 +17,14 @@ more about [OneOf](https://github.com/mcintyre321/OneOf)
 ## Step by step guide
 The steps I have followed are available in the git history of this branch
 ![Step by step in git](step-by-step.png)
+
+## Discriminated Unions
+```fsharp
+type conversionResult =
+    | Money of Money
+    | MissingExchangeRate of string
+
+type evaluationResult =
+    | Money of Money
+    | ExchangeRates of string List
+```
